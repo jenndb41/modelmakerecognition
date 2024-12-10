@@ -1,5 +1,7 @@
 import os
 import json
+import requests
+import zipfile
 import tensorflow.keras as tfkeras
 from flask import Flask, request, render_template
 import numpy as np
@@ -8,7 +10,26 @@ import random
 
 app = Flask(__name__)
 
+
+MODEL_URL = "https://drive.google.com/uc?id=1z-trDBG6hd4I6jRQGoy6NlpRW841zrtx"
+DATASET_URL = "https://drive.google.com/uc?id=1GjRh8OblDSch33r7OGLFyo07yUkqGuWM"
 DATASET_FOLDER = "riotu-cars-dataset-200"
+
+if not os.path.exists("model.h5"):
+    print("Downloading model...")
+    response = requests.get(MODEL_URL)
+    with open("model.h5", "wb") as f:
+        f.write(response.content)
+
+if not os.path.exists(DATASET_FOLDER):
+    print("Downloading and extracting dataset...")
+    response = requests.get(DATASET_URL)
+    with open("dataset.zip", "wb") as f:
+        f.write(response.content)
+    with zipfile.ZipFile("dataset.zip", "r") as zip_ref:
+        zip_ref.extractall("static")
+    os.remove("dataset.zip") 
+
 model = tfkeras.models.load_model("model.h5")
 
 with open("categories.json", "r") as f:
