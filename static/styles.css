@@ -1,0 +1,222 @@
+body, h1, p, form, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(-45deg, #dbd2b4, #ba9116, #dead10, #382c04);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    font-family: Arial, sans-serif;
+    color: #dbd2b4;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+
+.car-animation {
+    position: absolute;
+    top: calc(50% - 50px); 
+    left: 0;
+    width: 100%; 
+    height: 100px;
+    overflow: visible;
+    z-index: 2;
+}
+
+
+.image-container {
+    display: inline-block;
+    position: relative; 
+    padding: 10px; 
+    border-radius: 10px; 
+    overflow: hidden;
+}
+
+.image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 0, 0.8); 
+    box-sizing: border-box; 
+    animation: glowing-border 3s linear infinite;
+    background: linear-gradient(
+        to right,
+        transparent 25%,
+        rgba(255, 255, 0, 0.6) 50%,
+        transparent 75%
+    );
+    background-size: 300% 300%; 
+}
+
+.image-container {
+    display: inline-block;
+    position: relative; 
+    padding: 10px;
+    border-radius: 10px;
+    overflow: hidden; 
+}
+
+.image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: 2px solid transparent; 
+    box-sizing: border-box;
+    animation: glowing-border-section 4s linear infinite;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 0, 0.8) 0%,
+        rgba(255, 255, 0, 0) 40%,
+        rgba(255, 255, 0, 0) 60%,
+        rgba(255, 255, 0, 0.8) 100%
+    );
+    background-size: 300% 300%;
+    mask: linear-gradient(transparent, black) border-box;
+    -webkit-mask: linear-gradient(transparent, black) border-box;
+}
+
+.image-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px; 
+}
+
+@keyframes glowing-border-section {
+    0% {
+        background-position: 0% 50%; 
+    }
+    50% {
+        background-position: 100% 50%; 
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.car-animation img {
+    position: absolute;
+    width: 100px; 
+    height: auto; 
+    animation: drive 5s linear infinite; 
+}
+
+@keyframes drive {
+    0% {
+        transform: translateX(-150px); 
+    }
+    100% {
+        transform: translateX(100vw);
+    }
+}
+
+.dashed-line {
+    position: absolute;
+    top: calc(50% + 20px); 
+    left: 0; 
+    width: 100vw; 
+    height: 3px; 
+    background: repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent 20px,
+        #000 20px,
+        #000 40px
+    ); 
+    z-index: 1; 
+    animation: move-road 5s linear infinite; 
+}
+
+@keyframes move-road {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: -40px; 
+    }
+}
+
+.container {
+    position: relative;
+    background: rgba(0, 0, 0, 0);
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #000;
+    outline: 0.2em solid #000;
+    width: 400px;
+    text-align: center;
+    z-index: 3; 
+    margin-top: 70px; 
+    overflow: hidden; 
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.index-page p {
+    margin-bottom: 60px;
+    font-size: 16px;
+    color: #000;
+}
+
+input[type="file"] {
+    border: 2px dashed #ccc;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    background: #fafafa;
+    transition: 0.3s;
+}
+
+input[type="file"]:hover {
+    border-color: #ba9116;
+    background: #f0f8ff;
+}
+
+button {
+    background: #6e6e6e;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ba9116;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
